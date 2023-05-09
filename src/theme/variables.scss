@@ -4,12 +4,13 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
-  --ion-color-primary-rgb: 56, 128, 255;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary: #ffc409;
+  --ion-color-primary-rgb: 255, 196, 9;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0, 0, 0;
+  --ion-color-primary-shade: #e0ac08;
+  --ion-color-primary-tint: #ffca22;
+	--ion-background-color-rgb: 255,255,255;
 
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
@@ -83,12 +84,27 @@
    */
 
   body {
-    --ion-color-primary: #428cff;
-    --ion-color-primary-rgb: 66,140,255;
-    --ion-color-primary-contrast: #ffffff;
-    --ion-color-primary-contrast-rgb: 255,255,255;
-    --ion-color-primary-shade: #3a7be0;
-    --ion-color-primary-tint: #5598ff;
+
+    ion-tab-button {
+      // --ripple-color: var(--ion-color-medium);
+      --color: var(--ion-light-white);
+      // --color-selected: var(--ion-color-medium);
+    }
+    
+    ion-tab-button.tab-selected {
+      // --background: var(--ion-color-light-contrast) !important;
+      --color-selected: #fee994
+    }
+
+    --ion-light-yellow: #fee994;
+    --ion-light-white: #ffffff;
+
+    --ion-color-primary: rgb(255, 192, 75);
+    --ion-color-primary-rgb: 255, 213, 52;
+    --ion-color-primary-contrast: #000000;
+    --ion-color-primary-contrast-rgb: 0, 0, 0;
+    --ion-color-primary-shade: #e0bb2e;
+    --ion-color-primary-tint: #ffd948;
 
     --ion-color-secondary: #50c8ff;
     --ion-color-secondary-rgb: 80,200,255;
@@ -153,7 +169,7 @@
    */
 
   .ios body {
-    --ion-background-color: #000000;
+    --ion-background-color: #ffffff;
     --ion-background-color-rgb: 0,0,0;
 
     --ion-text-color: #ffffff;
@@ -197,13 +213,14 @@
    */
 
   .md body {
-    --ion-background-color: #121212;
+    --ion-background-color: #ffffff;
     --ion-background-color-rgb: 18,18,18;
 
-    --ion-text-color: #ffffff;
+    --ion-text-color: #000000;
     --ion-text-color-rgb: 255,255,255;
 
-    --ion-border-color: #222222;
+    --ion-border-color: #edac58;
+    // --ion-border-color: #ff742a;
 
     --ion-color-step-50: #1e1e1e;
     --ion-color-step-100: #2a2a2a;
@@ -227,9 +244,9 @@
 
     --ion-item-background: #1e1e1e;
 
-    --ion-toolbar-background: #1f1f1f;
+    --ion-toolbar-background: #edac58;
 
-    --ion-tab-bar-background: #1f1f1f;
+    --ion-tab-bar-background: #edac58;
 
     --ion-card-background: #1e1e1e;
   }
