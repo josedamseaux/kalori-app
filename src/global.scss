@@ -9,6 +9,19 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+.alert-wrapper {
+    .alert-button:first-child {
+        //   color: red;
+        background-color: transparent
+    }
+}
+
+.whats-brm .alert-title {
+    font-size: 16px !important;
+}
+
+
+
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
 

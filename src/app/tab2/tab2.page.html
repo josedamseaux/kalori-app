@@ -1,17 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      My diet
-    </ion-title>
+    <div class="d-flex justify-content-between">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>My diet</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-icon name="settings-outline" class="gearIcon rotate" 
+      [ngClass]="{'rotate': isRotated }" 
+      (click)="rotateIcon(); setOpen(true)">
+      </ion-icon>
+
+      <ion-action-sheet [isOpen]="isActionSheetOpen" 
+      [buttons]="actionSheetButtons" 
+      (didDismiss)="setOpen(false)"
+       class="my-custom-class">
+      </ion-action-sheet>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-
-  <!-- <app-explore-container name="Tab 2 page"></app-explore-container> -->
+  <app-create-diet></app-create-diet>
 </ion-content>

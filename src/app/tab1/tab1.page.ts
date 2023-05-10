@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-tab1',
@@ -9,24 +10,26 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab1Page {
 
-  constructor(public alertController: AlertController, public router: Router) { }
-    isRotated = false;
+  constructor(public alertController: AlertController, public router: Router, private dataService: DataService) { }
+
+
+  // Gear funcionality
+  isRotated = false;
 
   rotateIcon() {
     this.isRotated = !this.isRotated;
   }
-  
 
   isActionSheetOpen = false;
   public actionSheetButtons = [
     {
-      text: 'Log out',
-      role: 'logout',
+      text: 'Create diet objetive',
+      role: 'create',
       data: {
         action: 'logout',
       },
       handler: () => {
-        this.logout()
+        this.createObjective()
       }
     },
     {
@@ -37,6 +40,16 @@ export class Tab1Page {
       handler: () => {
         console.log('clicked')
         this.donateWithPayPal()
+      }
+    },
+    {
+      text: 'Log out',
+      role: 'logout',
+      data: {
+        action: 'logout',
+      },
+      handler: () => {
+        this.logout()
       }
     },
     {
@@ -51,11 +64,23 @@ export class Tab1Page {
     },
   ];
 
+  createObjective() {
+    this.dataService.callSubjectToCreateDiet('create diet!');
+  }
+
   setOpen(isOpen: boolean) {
     this.isActionSheetOpen = isOpen;
+  }
+
+  donateWithPayPal() {
+    window.open('https://www.paypal.com/donate/?hosted_button_id=MLYMMB6G78J9Q')
+  }
+
+  logout() {
 
   }
 
+  // 
 
 
 
@@ -117,16 +142,6 @@ export class Tab1Page {
         // Object.assign(this.dayTrained, { dayOfWeekTrained: todaysDate });
       })
     // this.thirButtonForTrained()
-  }
-
-
-  donateWithPayPal(){
-    window.open('https://www.paypal.com/donate/?hosted_button_id=MLYMMB6G78J9Q')
-  }
-
-
-  logout(){
-
   }
 
 
