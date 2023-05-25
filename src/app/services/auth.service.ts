@@ -9,6 +9,19 @@ export class AuthService {
 
   constructor(public auth: Auth) { }
 
+
+  getCurrentUser() {
+    return new Promise<any>((resolve, reject) => {
+      this.auth.onAuthStateChanged((user) => {
+        if (user) {
+          resolve(user);
+        } else {
+          resolve(null);
+        }
+      });
+    });
+  }
+
   async register({email, password}: { email: string, password: string }){
     try {
       const user = await createUserWithEmailAndPassword(this.auth, email, password)

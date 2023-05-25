@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
     await loading.dismiss()
  
     if(user){
+      console.log('user registered')
       this.router.navigate(['/tabs/tab1']);
     } else {
       this.showAlert('Registration failed', 'please try again')
@@ -56,10 +57,9 @@ export class LoginComponent implements OnInit {
 		const user = await this.authService.login(this.credentials.value);
 		await loading.dismiss();
 
-
 		if (user) {
-      this.router.navigate(['/home']);
-
+      console.log('user exist')
+      this.router.navigate(['/tabs/tab1']);
 		} else {
 			this.showAlert('Login failed', 'Please try again!');
 		}

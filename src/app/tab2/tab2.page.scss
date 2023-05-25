@@ -1,36 +1,41 @@
-ion-title {
-    color: white;
-    font-size: 23px;
+.card {
+    padding: 20px;
+    border: none;
 }
 
-.gearIcon {
-    margin: 8px 5px 0 0;
-    font-size: 40px;
-    color: rgb(255, 255, 255);
+.statsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: radial-gradient(circle, #ffeeea, #ffa734);
+    padding-left: 10%;
+    border-radius: 10px;
+    height: 170px;
 }
 
-.gearIcon {
-    transition: transform 0.23s ease-in-out;
+.statsContainer h3 {
+    font-style: italic;
+    font-weight: 500;
 }
 
-.rotate {
-    transform: rotate(180deg);
+.statsContainer img {
+    height: 150px;
+    object-fit: contain;
 }
 
-.logoutButton {
-    --background: transparent;
-    --box-shadow: none;
-    --border-style: none;
-    color: white;
+.stats {
+    margin-left: 10px;
 }
 
-/* Note: These styles should be located in your global stylesheet */
-ion-action-sheet.my-custom-class {
-    --background: #edac58;
-    --backdrop-opacity: 0.6;
-    --button-background-selected: #e97223;
-    --button-color: #ffffff;
-    --color: #e80000;
-    /* role: "destructive" button iOS styling override */
-    --ion-color-danger: #000000;
+.stats p {
+    margin-bottom: 0;
+    display: flex;
+    flex: initial;
+}
+
+ion-icon{
+    margin-top: 10px;
+}
+
+.noDietObjective{
+    margin-left: 80px;
 }

@@ -1,29 +1,48 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <div class="d-flex justify-content-between">
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Kalori app</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-icon name="settings-outline" class="gearIcon rotate" 
-      [ngClass]="{'rotate': isRotated }" 
-      (click)="rotateIcon(); setOpen(true)">
-      </ion-icon>
-
-      <ion-action-sheet [isOpen]="isActionSheetOpen" 
-      [buttons]="actionSheetButtons" 
-      (didDismiss)="setOpen(false)"
-       class="my-custom-class">
-      </ion-action-sheet>
-    </div>
-  </ion-toolbar>
-
-</ion-header>
-
 <ion-content [fullscreen]="true">
+  <app-navbar></app-navbar>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="buttonForAdding()">
+  <div class="card">
+    <div class="statsContainer" [ngStyle]="getStyle()">
+
+      <div class="counter column1">
+        <h5>KCALs</h5>
+        <div class="centered-div">
+          {{kcalTotal}}
+        </div>
+      </div>
+
+      <div class="tmb column2">
+        <h5>Target</h5>
+        <div class="centered-div">
+          {{kcalTarget}}
+        </div>
+      </div>
+
+      <div class="kcalVsTMB empty">
+        <div class="centered-div">
+          <p>{{messageForStatusOfTarget}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <ion-card *ngFor="let date of groupedByDate| keyvalue | reverse" class="custom-card">
+    <ion-card-header>
+      <ion-card-title>{{date.key}}</ion-card-title>
+      <ion-card-content *ngFor="let food of date.value">
+        <h1 [ngStyle]="getStyleForEachDay(food.kcalTotal)" class="total-kcal">{{ food.kcalTotal }} </h1>
+        <div class="items" *ngFor="let fooder of food.foods">
+          <div class="meal"> {{ fooder.meal }} </div>
+          <div class="kcal"> {{ fooder.kcal }} </div>
+        </div>
+      </ion-card-content>
+    </ion-card-header>
+  </ion-card>
+
+  <br><br><br>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addMeal()">
     <ion-fab-button size="large" class="addButton">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

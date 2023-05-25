@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { userDietData } from '../share/interfaces/userDietData';
 
 @Component({
   selector: 'app-tab2',
@@ -10,76 +11,41 @@ export class Tab2Page {
 
   constructor(private dataService: DataService) { }
 
-  // Gear funcionality
-  isRotated = false;
+  userInfo!: userDietData;
+  showNoDataMessage: boolean = true
 
-  rotateIcon() {
-    this.isRotated = !this.isRotated;
+  ngOnInit() {
+    this.fetchTMBData()
+    this.updateDietObjective()
+    setTimeout(() => {
+      this.fetchTMBData()
+      console.log("Retrasado por 1 segundo.");
+    }, 0);
   }
 
-  isActionSheetOpen = false;
-
-  public actionSheetButtons = [
-    {
-      text: 'Create diet objetive',
-      role: 'create',
-      data: {
-        action: 'logout',
-      },
-      handler: () => {
-        this.createObjective()
+  updateDietObjective() {
+    this.dataService.getCreateDietSubject().subscribe(async data => {
+      if (data) {
+        this.userInfo = data;
+        this.showNoDataMessage = false;
+      } else {
+        this.showNoDataMessage = true;
       }
-    },
-    {
-      text: 'Donate with PayPal',
-      data: {
-        action: 'share',
-      },
-      handler: () => {
-        console.log('clicked')
-        this.donateWithPayPal()
+
+    });
+  }
+
+  fetchTMBData(): void {
+    this.dataService.getTMBSubject().subscribe(data => {
+      console.log(data);
+      if (data) {
+        this.userInfo = data;
+        this.showNoDataMessage = false;
+      } else {
+        this.showNoDataMessage = true;
       }
-    },
-    {
-      text: 'FAQ',
-      role: 'cancel',
-      data: {
-        action: 'cancel',
-      },
-      handler: () => {
-        this.logout()
-      }
-    },
-    {
-      text: 'Log out',
-      role: 'logout',
-      data: {
-        action: 'logout',
-      },
-      handler: () => {
-        this.logout()
-      }
-    },
-  ];
-
-  setOpen(isOpen: boolean) {
-    this.isActionSheetOpen = isOpen;
+    });
   }
-
-  createObjective(){
-      this.dataService.callSubjectToCreateDiet('create diet!');
-  }
-
-  donateWithPayPal() {
-    window.open('https://www.paypal.com/donate/?hosted_button_id=MLYMMB6G78J9Q')
-  }
-
-  logout() {
-
-  }
-
-  // 
-
 
 
 

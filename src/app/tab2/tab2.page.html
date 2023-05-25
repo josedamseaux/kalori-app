@@ -1,25 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <div class="d-flex justify-content-between">
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>My diet</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-icon name="settings-outline" class="gearIcon rotate" 
-      [ngClass]="{'rotate': isRotated }" 
-      (click)="rotateIcon(); setOpen(true)">
-      </ion-icon>
-
-      <ion-action-sheet [isOpen]="isActionSheetOpen" 
-      [buttons]="actionSheetButtons" 
-      (didDismiss)="setOpen(false)"
-       class="my-custom-class">
-      </ion-action-sheet>
-    </div>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
+  <app-navbar></app-navbar>
   <app-create-diet></app-create-diet>
+
+  <div class="card" *ngIf="!showNoDataMessage">
+
+    <div class="statsContainer">
+      <div class="mt-1 text-center">
+        <img [src]="'../../assets/imgs/' + userInfo.gender + '-' + userInfo.random + '.png'" alt="">
+      </div>
+
+      <div class="stats mt-4">
+        <div>
+          <h3>{{userInfo.objective}}</h3>
+        </div>
+        <p>Height {{userInfo.height}} cm</p>
+        <p>Weight {{userInfo.weight}} kg</p>
+        <p>TMB {{userInfo.tmb}}</p>
+        <p>Target: {{userInfo.target}}</p>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="statsContainer" *ngIf="showNoDataMessage">
+        <div class="noDietObjective mt-4">
+          <h3>Add your diet objective</h3>
+        </div>
+    </div>
+  </div>
+
+
 </ion-content>
