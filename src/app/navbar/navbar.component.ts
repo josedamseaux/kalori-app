@@ -82,33 +82,33 @@ export class NavbarComponent implements OnInit {
   }
 
   async FAQ(){
-      const alert = await this.alertController.create({
-        header: 'Add meal',
-        buttons: [{
-          text: 'Add another', handler: async (data) => {
-          },
-        },
-        {
-          text: 'Done', handler: async (data) => {
-          },
-        },
-      ],
-        inputs: [
-          {
-            name: 'meal',
-            placeholder: 'E.g., eggs, broccoli, bread',
-            type: 'text',
-          },
-          {
-            name: 'kcal',
-            placeholder: 'Calories',
-            type: 'number',
-          }
-        ],
-      });
+  //     const alert = await this.alertController.create({
+  //       header: 'Add meal',
+  //       buttons: [{
+  //         text: 'Add another', handler: async (data) => {
+  //         },
+  //       },
+  //       {
+  //         text: 'Done', handler: async (data) => {
+  //         },
+  //       },
+  //     ],
+  //       inputs: [
+  //         {
+  //           name: 'meal',
+  //           placeholder: 'E.g., eggs, broccoli, bread',
+  //           type: 'text',
+  //         },
+  //         {
+  //           name: 'kcal',
+  //           placeholder: 'Calories',
+  //           type: 'number',
+  //         }
+  //       ],
+  //     });
   
-      await alert.present()
-      await alert.onDidDismiss()
+  //     await alert.present()
+  //     await alert.onDidDismiss()
   }
 
 
