@@ -1,0 +1,30 @@
+<div class="card" [ngStyle]="getStyle()">
+  <div class="dateToday">
+   <p> {{ today | date : 'longDate' }}</p>
+  </div>
+  <div class="statsContainer" [ngStyle]="getStyle()">
+
+    <div class="counter column1">
+      
+      <h5>KCALs</h5>
+      <div class="centered-div">
+        {{kcalTotal}}
+      </div>
+    </div>
+
+    <div class="tmb column2">
+      <h5>Target</h5>
+      <div class="centered-div">
+        {{kcalTarget}}
+      </div>
+    </div>
+
+    <div class="kcalVsTMB empty">
+      <div class="centered-div">
+        <p>{{messageForStatusOfTarget}}</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,60 @@
+<ion-content [fullscreen]="true">
+  <app-navbar></app-navbar>
+  <app-create-diet></app-create-diet>
+
+  <div class="card" *ngIf="!showNoDataMessage">
+    <div class="statsContainer">
+      <div class="mt-1 text-center">
+        <img [src]="'../../assets/imgs/' + userInfo.gender + '-' + userInfo.random + '.png'" alt="">
+      </div>
+
+      <div class="stats mt-4">
+        <div>
+          <h3>{{userInfo.objective}}</h3>
+        </div>
+        <p>Height {{userInfo.height}} cm</p>
+        <p>Weight {{userInfo.weight}} kg</p>
+        <p>Maintence {{userInfo.calorieMaintence}}</p>
+        <p>Target: {{userInfo.target}}</p>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card" *ngIf="showNoDataMessage">
+    <div class="statsContainer">
+        <div class="noDietObjective mt-4">
+          <h3>Add your diet objective</h3>
+          <button class="createNewDietObjectiveButton">
+            Create new diet objective
+          </button>
+        </div>
+    </div>
+  </div>
+
+  <div class="createNewDietObjective">
+    <button class="createNewDietObjectiveButton" (click)="createNewDietObjective()">
+      Create new diet objective
+    </button>
+  </div>
+
+
+  <div *ngFor="let month of groupedByMonth | keyvalue | reverse">
+    <ion-card *ngFor="let entry of $any(month.value) | keyvalue | reverse" class="custom-card">
+      <ion-card-header style="background-color: white; height: 80px;">
+        <ion-card-title>{{entry.key}}</ion-card-title>
+        <div *ngFor="let food of entry.value; let last=last" style="width: 0.1; height: 0;">
+          <div class="d-flex justify-content-around">
+            <h1 *ngIf="last" [ngStyle]="getStyleForEachDay(food.kcalTotal)" style="width: 23%; color: black;">{{ target }} /</h1>
+            <h1 [ngStyle]="getStyleForEachDay(food.kcalTotal)" style="width: 77%;" class="total-kcal">{{ food.kcalTotal }} </h1>
+          </div>
+          <h1 [ngStyle]="getStyleForEachDay(food.kcalTotal)">{{ food.kcalTotal }} </h1>
+     
+        </div>
+      </ion-card-header>
+    </ion-card>
+  </div>
+
+
+</ion-content>

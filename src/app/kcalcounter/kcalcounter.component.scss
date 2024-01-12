@@ -1,0 +1,70 @@
+  .card {
+    padding: 0px 0px 20px 0px;
+    border: none;
+  }
+  
+  .statsContainer {
+    display: grid;
+    grid-template-areas:
+      "column1 column2"
+      "empty empty";
+    height: 90px;
+  }
+  
+  .column1 {
+    grid-area: column1;
+  }
+  
+  .column2 {
+    grid-area: column2;
+  }
+  
+  .empty {
+    grid-area: empty;
+  }
+  
+  .counter {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #a54500;
+    margin-left: 90px;
+  }
+  
+  .tmb {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #a54500;
+    margin-right: 90px;
+  }
+  
+  .kcalVsTMB p {
+    margin-bottom: 0px;
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  .centered-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    font-size: 20px;
+    color: #a54500;
+    margin-top: -15px !important;
+  }
+
+  .dateToday{
+    margin: 10px 0 0 10px;
+  }
+
+  .dateToday p{
+    margin-bottom: 0px;
+    color: #a54500;
+      font-weight: 500;
+    font-size: 17px ;
+  }
+  

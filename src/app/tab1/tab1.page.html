@@ -1,0 +1,30 @@
+<ion-content [fullscreen]="true">
+
+  <app-navbar></app-navbar>
+  <app-kcalcounter></app-kcalcounter>
+
+  <div *ngFor="let month of groupedByMonth | keyvalue | reverse">
+    <ion-card *ngFor="let entry of $any(month.value) | keyvalue | reverse" class="custom-card">
+      <ion-card-header>
+        <ion-card-title>{{entry.key}}</ion-card-title>
+        <ion-card-content *ngFor="let food of entry.value; let last=last"> 
+          <div class="d-flex justify-content-around">
+            <h1 *ngIf="last" style="width: 25%; color: #a54500;">{{ target }}</h1>
+            <h1 [ngStyle]="getStyleForEachDay(food.kcalTotal)" style="width: 50%;" class="total-kcal">{{ food.kcalTotal }} </h1>
+          </div>
+          <div class="items" *ngFor="let fooder of food.foods">
+            <div class="meal"> {{ fooder.meal }} </div>
+            <div class="kcal"> {{ fooder.kcal }} kcal </div>
+          </div>
+        </ion-card-content>
+      </ion-card-header>
+    </ion-card>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addMeal()">
+    <ion-fab-button size="large" class="addButton">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>

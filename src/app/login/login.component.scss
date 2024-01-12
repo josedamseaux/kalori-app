@@ -1,0 +1,23 @@
+ion-title{
+    color: white;
+}
+
+ion-input {
+    --background: #ffffff;
+    /* Color de fondo */
+    width: 280px;
+}
+
+ion-item {
+    --background: transparent;
+    // height: 56px !important; 
+    width: 280px;
+}
+
+.input-wrapper{
+    height: 10px !important;
+}
+
+.native-input{
+    --height:10px
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">KaloriApp</string>
+    <string name="title_activity_main">KaloriApp</string>
+    <string name="package_name">io.ionic.starter.KaloriApp</string>
+    <string name="custom_url_scheme">io.ionic.starter.KaloriApp</string>
+</resources>

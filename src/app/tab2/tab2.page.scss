@@ -1,0 +1,71 @@
+.card {
+    padding: 20px;
+    border: none;
+}
+
+.statsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: radial-gradient(circle, #ffeeea, #ffa734);
+    padding-left: 10%;
+    border-radius: 10px;
+    height: 170px;
+}
+
+.statsContainer h3 {
+    font-style: italic;
+    font-weight: 500;
+}
+
+.statsContainer img {
+    height: 150px;
+    object-fit: contain;
+}
+
+// boton crear nueva dieta
+
+.createNewDietObjective{
+
+}
+
+.createNewDietObjective {
+    text-align: center;
+  }
+  
+  .createNewDietObjectiveButton {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ffa734; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: 2px solid #ffa734; /* Borde del botón */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s, color 0.3s; /* Agrega transición suave */
+  }
+  
+  .createNewDietObjectiveButton:hover {
+    background-color: #45a049; /* Cambia el color de fondo al pasar el ratón */
+    color: #fff; /* Cambia el color del texto al pasar el ratón */
+  } 
+
+.stats {
+    margin-left: 10px;
+}
+
+.stats p {
+    margin-bottom: 0;
+    display: flex;
+    flex: initial;
+}
+
+ion-icon{
+    margin-top: 10px;
+}
+
+.noDietObjective{
+    margin-left: 80px;
+}

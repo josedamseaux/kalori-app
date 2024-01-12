@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Kalori app</ion-title>
+  </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <form [formGroup]="credentials" (ngSubmit)="login()">
+  
+      <ion-item>
+        <ion-input type="email" formControlName="email" label="email" labelPlacement="floating"     
+         [clearOnEdit]="true" placeholder="Enter your email"
+        ></ion-input>
+        <ion-note slot="error" *ngIf="email && (email.dirty || email.touched) && email.errors">Email invalid, check please</ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" formControlName="password" label="password" labelPlacement="floating"
+        [clearOnEdit]="true"  placeholder="Enter your password"
+        ></ion-input>
+        <ion-note slot="error" *ngIf="email && (email.dirty || email.touched) && email.errors">Password invalid, check please</ion-note>
+      </ion-item>
+
+      <div class="container">
+        <ion-button type="submit" class="ion-margin-top" [disabled]="!credentials.valid">Login</ion-button>
+        <br>
+        <ion-button type="button" class="ion-margin-top" (click)="register()">Create account</ion-button>
+      </div>
+
+    </form>
+  </ion-content>
+  
