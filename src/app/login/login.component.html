@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Kalori app</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="header">
+    <h1>{{operation}}</h1>
+  </div>
+
+  <form [formGroup]="credentials" class="form" (ngSubmit)="login()">
+
+    <ion-item class="form">
+      <ion-input class="form" type="email" formControlName="email" label="email" labelPlacement="floating"
+        [clearOnEdit]="true" placeholder="Enter your email"></ion-input>
+      <ion-note slot="error" *ngIf="email && (email.dirty || email.touched) && email.errors">Email invalid, check
+        please</ion-note>
+    </ion-item>
+
+    <ion-item class="form">
+      <ion-input class="form" type="password" formControlName="password" label="password" labelPlacement="floating"
+        [clearOnEdit]="true" placeholder="Enter your password"></ion-input>
+      <ion-note slot="error" *ngIf="email && (email.dirty || email.touched) && email.errors">Password invalid, check
+        please</ion-note>
+    </ion-item>
+
+    <div class="container">
+      <ion-button *ngIf="operation=='Register'" type="submit" class="ion-margin-top"
+      [disabled]="!credentials.valid" (click)="register()">Create account</ion-button>
+      <ion-button *ngIf="operation=='Login'" type="submit" class="ion-margin-top" [disabled]="!credentials.valid">Login</ion-button>
+      <br>
+      <br>
+
+      <div *ngIf="operation=='Login'" >
+        <p class="ion-margin-top" style="display: inline;">I don't have an account. </p>
+        <p style="display: inline; color: #ffba5f;"  (click)="createAccount()"> Create one</p>
+      </div>
+
+      <div *ngIf="operation=='Register'">
+        <p  class="ion-margin-top" style="display: inline;">I have an account. </p>
+        <p  style="display: inline; color: #ffba5f;" (click)="loginToAccount()"> Login</p>
+      </div>
+
+    </div>
+
+  </form>
+</ion-content>

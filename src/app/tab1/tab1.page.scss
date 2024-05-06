@@ -1,0 +1,144 @@
+.addButton {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 12px;
+  margin-right: 17px;
+}
+
+ion-icon {
+  color: rgb(255, 255, 255);
+  font-size: 35px;
+}
+
+.card {
+  padding: 20px 0px 20px 0px;
+  border: none;
+}
+
+.statsContainer {
+  display: grid;
+  grid-template-areas:
+    "column1 column2"
+    "empty empty";
+  height: 120px;
+}
+
+.column1 {
+  grid-area: column1;
+}
+
+.column2 {
+  grid-area: column2;
+}
+
+.empty {
+  grid-area: empty;
+}
+
+.counter {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #a54500;
+  margin-left: 90px;
+}
+
+.tmb {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #a54500;
+  margin-right: 90px;
+}
+
+.kcalVsTMB p {
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.centered-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  font-size: 20px;
+  color: #a54500;
+  margin-top: -15px !important;
+}
+
+ion-card-title{
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+ion-card-content h1 {
+  margin: 0px 0px 0px 0px;
+}
+
+ion-card-content {
+  height: 30px !important;
+}
+
+
+ion-card-header {
+  padding: 0px;
+}
+
+.card-content-md {
+  height: 33px;
+  padding: 0px;
+  line-height: 14px;
+}
+
+
+.custom-card {
+  background-color: #dd0909;
+  background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("../../assets/imgs/fondo-comida-2.jpg"); /* Segunda imagen */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  padding: 20px 20px 35px 20px;
+  margin: 10px 70px 10px 70px;
+  border-radius: 8px;
+}
+
+.alternate-background {
+  background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("../../assets/imgs/fondo-comida.jpg"); /* Primera imagen */
+}
+
+
+.total-kcal {
+  font-size: 24px;
+  color: #edac58;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3px;
+}
+
+.meal {
+  margin-left: 20px;
+  flex: 1;
+  font-size: 16px;
+  color: black;
+}
+
+.kcal {
+  margin-right: 20px;
+  flex: 1;
+  font-size: 16px;
+  color: black;
+  text-align: right;
+}
+
+.targetvsckal{
+  margin-top: 10px;
+}

@@ -1,0 +1,65 @@
+ion-header{
+  --background: #edac58;
+}
+
+ion-title {
+    color: white;
+    font-size: 23px;
+}
+
+ion-toolbar{
+  --background: #edac58;
+  background-color: #edac58;
+  color: white;
+}
+
+.toolbar{
+  --background: #edac58;
+  background-color: #edac58;
+  color: white;
+}
+
+.gearIcon {
+    margin: 8px 5px 0 0;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+}
+
+.gearIcon {
+    transition: transform 0.23s ease-in-out;
+}
+
+.rotate {
+    transform: rotate(180deg);
+    animation: alternate
+}
+
+.logoutButton {
+    --background: transparent;
+    --box-shadow: none;
+    --border-style: none;
+    color: white;
+}
+
+/* Note: These styles should be located in your global stylesheet */
+ion-action-sheet.gearMenu {
+    --background: #edac58;
+    --backdrop-opacity: 0.6;
+    --button-background-selected: #e97223;
+    --button-color: #ffffff;
+    --color: #e80000;
+    /* role: "destructive" button iOS styling override */
+    --ion-color-danger: #000000;
+}
+
+.addButton {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 12px;
+    margin-right: 17px;
+}
+
+ion-icon {
+    color: rgb(255, 255, 255);
+    font-size: 35px;
+}

@@ -1,0 +1,33 @@
+ion-content{
+  --background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
+  url("../../assets/imgs//fondo-comida-2.jpg") !important;
+}
+
+ion-title{
+    color: white;
+}
+
+.header{
+  margin: 40px 0 0 10px;
+  color: #ffba5f;
+}
+
+ion-input {
+    --background: transparent;
+    /* Color de fondo */
+    width: 280px;
+}
+
+ion-item {
+    --background: transparent;
+    // height: 56px !important;
+    width: 280px;
+}
+
+.input-wrapper{
+    height: 10px !important;
+}
+
+.native-input{
+    --height:10px
+}
