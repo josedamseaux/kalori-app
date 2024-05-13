@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { userDietData } from '../share/interfaces/userDietData';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -9,7 +10,7 @@ import { userDietData } from '../share/interfaces/userDietData';
 })
 export class Tab2Page {
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private alertController: AlertController) { }
 
   userInfo!: userDietData;
   showNoDataMessage: boolean = true
@@ -69,6 +70,7 @@ export class Tab2Page {
   fetchTMBData(): void {
     this.dataService.TMBSubject$.subscribe(data => {
       if (data) {
+        console.log(data)
         this.userInfo = data;
         this.showNoDataMessage = false;
       } else {
@@ -137,11 +139,27 @@ export class Tab2Page {
     }
   }
 
-  deleteEntry(entry: any) {
-    // console.log(entry)
-
-    this.dataService.delete(entry)
-
+ async deleteEntry(entry: any) {
+    const alert2 = await this.alertController.create({
+      header: 'Are you sure to delete?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'no',
+          handler: () => {
+            alert2.dismiss()
+          },
+        },
+        {
+          text: 'Ok',
+          role: 'ok',
+          handler: () => {
+            this.dataService.delete(entry)
+          },
+        }
+      ],
+    });
+    await alert2.present();
   }
 
 }

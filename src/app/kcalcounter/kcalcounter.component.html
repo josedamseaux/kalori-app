@@ -1,11 +1,11 @@
 <div class="card" [ngStyle]="getStyle()">
   <div class="dateToday">
-   <p> {{ today | date : 'longDate' }}</p>
+   <p> {{ formattedDate }}</p>
   </div>
-  <div class="statsContainer" [ngStyle]="getStyle()">
+  <div class="statsContainer">
 
     <div class="counter column1">
-      
+
       <h5>KCALs</h5>
       <div class="centered-div">
         {{kcalTotal}}

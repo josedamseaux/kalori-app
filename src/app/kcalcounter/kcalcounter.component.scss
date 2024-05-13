@@ -2,27 +2,28 @@
     padding: 0px 0px 20px 0px;
     border: none;
   }
-  
+
   .statsContainer {
     display: grid;
     grid-template-areas:
       "column1 column2"
       "empty empty";
     height: 90px;
+    color: #ceffba;
   }
-  
+
   .column1 {
     grid-area: column1;
   }
-  
+
   .column2 {
     grid-area: column2;
   }
-  
+
   .empty {
     grid-area: empty;
   }
-  
+
   .counter {
     margin-top: 20px;
     display: flex;
@@ -31,7 +32,7 @@
     color: #a54500;
     margin-left: 90px;
   }
-  
+
   .tmb {
     margin-top: 20px;
     display: flex;
@@ -40,13 +41,13 @@
     color: #a54500;
     margin-right: 90px;
   }
-  
+
   .kcalVsTMB p {
     margin-bottom: 0px;
     margin-top: 10px;
     font-size: 18px;
   }
-  
+
   .centered-div {
     display: flex;
     align-items: center;
@@ -67,4 +68,4 @@
       font-weight: 500;
     font-size: 17px ;
   }
-  
+

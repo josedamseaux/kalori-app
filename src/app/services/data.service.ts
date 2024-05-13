@@ -3,11 +3,14 @@ import { Firestore, collection, collectionData, doc, getDoc, query, setDoc, upda
 import { BehaviorSubject, Observable, Subject, from, map, shareReplay, switchMap } from 'rxjs';
 import { AuthService } from './auth.service';
 import { CollectionReference, DocumentData, deleteDoc, documentId, getDocs, limit, orderBy } from 'firebase/firestore';
+import { isSameDay, parse, startOfDay } from 'date-fns';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
+  today = startOfDay(new Date());
 
   private subjectToCreateDiet = new BehaviorSubject<any>(null);
   subjectToCreateDiet$ = this.subjectToCreateDiet.asObservable();
@@ -99,16 +102,18 @@ export class DataService {
                 // Inicializar el total de kcal en 0
                 groupedData[dateAdded].kcalTotal = 0;
               }
-
               // Calcular la suma total de kcal para los alimentos en el grupo
               const totalKcal = obj['foods'].reduce((total: any, food: { kcal: any; }) => total + food.kcal, 0);
-
               // Agregar el total de kcal al objeto agrupado
               groupedData[dateAdded].kcalTotal += totalKcal;
             });
             let aver:any = Object.values(groupedData)
-            console.log(aver[0].kcalTotal)
-            this.subjectKcalSoFar.next(aver[0].kcalTotal)
+            const today = startOfDay(new Date());
+            const parsedDate = parse(aver[0].dateAdded, 'dd-MM-yyyy', new Date());
+            const sameDay = isSameDay(parsedDate, today); // Verificar si es el mismo día
+            if(sameDay){
+              this.subjectKcalSoFar.next(aver[0].kcalTotal)
+            }
             // this.subjectKcalSoFar.next(groupedData[0].kcalTotal)
             // Obtener los valores del objeto groupedData para obtener el arreglo agrupado
             return Object.values(groupedData);
@@ -129,26 +134,12 @@ export class DataService {
     );
   }
 
-  filterEntriesByMonth(data: any) {
-    const filteredData: any = {};
-    for (const date in data) {
-      const month = date.split('-')[1];
-      if (!filteredData[month]) {
-        filteredData[month] = {};
-      }
-      filteredData[month][date] = data[date];
-    }
-
-    return filteredData;
-  }
-
   async delete(data: any) {
     const dataCollection: CollectionReference<DocumentData> = collection(this.firestore, this.uid);
     const queryForMeals = query(dataCollection, orderBy("createdAt", "desc"));
 
     try {
       const querySnapshot = await getDocs(queryForMeals);
-
       const docIdsToDelete: string[] = [];
 
       querySnapshot.forEach(doc => {
@@ -158,16 +149,14 @@ export class DataService {
           docIdsToDelete.push(doc.id); // Almacenar el ID del documento a eliminar
         }
       });
-
       // Eliminar todos los documentos almacenados en docIdsToDelete
       docIdsToDelete.map(async docId => {
         const documentRef = doc(this.firestore, `${this.uid}/${docId}`);
         await deleteDoc(documentRef);
       });
-
       console.log("Documentos eliminados correctamente:", docIdsToDelete);
     } catch (error) {
-      console.error("Error al obtener o eliminar documentos:", error);
+      console.error(error);
     }
   }
 

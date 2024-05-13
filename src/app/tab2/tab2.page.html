@@ -11,6 +11,7 @@
       <div class="stats mt-4">
         <div>
           <h3>{{userInfo.objective}}</h3>
+
         </div>
         <p>Height {{userInfo.height}} cm</p>
         <p>Weight {{userInfo.weight}} kg</p>
@@ -44,19 +45,23 @@
   </div>
   <div *ngFor="let item of objectivesByDay" >
     <ion-card class="custom-card">
-      <ion-card-header style="background-color: rgb(255, 243, 225); height: 80px;">
-        <ion-card-title style="color: black;">{{item.dateAdded}}</ion-card-title>
-        <div *ngFor="let food of item.foods; let last=last" style="width: 0.1; height: 0;" >
-          <div class="d-flex justify-content-around">
-            <!-- <h1 *ngIf="last" style="width: 23%; color: rgb(0, 0, 0);">{{ target }} /</h1> -->
-            <h1 *ngIf="last" [ngStyle]="getStyleForEachDay(item.kcalTotal)" style="width: 77%;" class="total-kcal">{{ item.kcalTotal }} </h1>
-            <button *ngIf="last" class="deleteButton" (click)="deleteEntry(item)"> X </button>
+      <ion-card-header>
+        <div class="entryDate">
+          <ion-card-title>{{item.dateAdded}}</ion-card-title>
+          <ion-icon *ngIf="userInfo.objective === 'deficit'" name="arrow-down-circle-outline"></ion-icon>
+          <ion-icon *ngIf="userInfo.objective === 'surplus'" name="arrow-up-circle-outline"></ion-icon>
+
+        </div>
+        <div *ngFor="let food of item.foods; let last=last">
+          <div class="d-flex justify-content-between">
+            <h1 *ngIf="last" [ngStyle]="getStyleForEachDay(item.kcalTotal)" class="total-kcal">{{ item.kcalTotal }} </h1>
+            <button *ngIf="last" class="deleteButton" (click)="deleteEntry(item)" style="margin-right: 20px;"> X </button>
+            <!-- <ion-icon *ngIf="last" name="arrow-down-circle-outline"></ion-icon> -->
+
           </div>
         </div>
       </ion-card-header>
     </ion-card>
   </div>
-
-  <div style="color: 90d473;"></div>
 
 </ion-content>

@@ -1,101 +1,116 @@
-ion-content{
-  --background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
-  url("../../assets/imgs//fondo-comida-2.jpg") !important;
+ion-content {
+  --background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+    url("../../assets/imgs//fondo-comida-2.jpg") !important;
+}
+
+ion-card-header {
+  background-color: rgb(255, 243, 225); height: 80px;
+}
+
+ion-card-title{
+  color: black;
+}
+
+ion-icon {
+  color: #ffa734;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 13px; /* Agrega 'px' para especificar píxeles */
+  right: 63%; /* Agrega 'px' para especificar píxeles */
+
+}
+
+.entryDate{
+  display: flex;
+  justify-content: start;
 }
 
 .card {
-  width: 80%; /* Ancho del elemento */
-  height: 20%; /* Altura del elemento */
-  border: none; /* Sin borde */
+  width: 80%;
+  height: 20%;
+  border: none;
   background: transparent;
-  margin: 0 auto; /* Margen lateral automático */
+  margin: 0 auto;
   margin-top: 20px;
 }
 
 .statsContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: transparent;
-    padding-left: 10%;
-    border-radius: 10px;
-    height: 170px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: transparent;
+  padding-left: 10%;
+  border-radius: 10px;
+  height: 170px;
 }
 
 .statsContainer h3 {
-    font-style: italic;
-    font-weight: 500;
+  font-style: italic;
+  font-weight: 500;
 }
 
 .statsContainer img {
-    height: 150px;
-    object-fit: contain;
-}
-
-
-.euis{
-  background-color: rgb(255, 208, 161)
-
+  height: 150px;
+  object-fit: contain;
 }
 
 .createNewDietObjective {
-    text-align: center;
-  }
+  text-align: center;
+}
 
-  .createNewDietObjectiveButton {
-    display: inline-block;
-    padding: 8px 8px;
-    margin-top: 20px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    background-color: #ffa734; /* Color de fondo */
-    color: #fff; /* Color del texto */
-    border: 2px solid #ffa734; /* Borde del botón */
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s, color 0.3s; /* Agrega transición suave */
-    // width: 55%;
-  }
+.createNewDietObjectiveButton {
+  display: inline-block;
+  padding: 8px 8px;
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #ffa734;
+  /* Color de fondo */
+  color: #fff;
+  /* Color del texto */
+  border: 2px solid #ffa734;
+  /* Borde del botón */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  transition: background-color 0.3s, color 0.3s;
+  /* Agrega transición suave */
+  // width: 55%;
+}
 
-  .target{
-    margin-top: 10px;
-    font-style: italic;
-    text-align: center;
-  }
+.target {
+  margin-top: 10px;
+  font-style: italic;
+  text-align: center;
+}
 
 .stats {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .stats p {
-    margin-bottom: 0;
-    display: flex;
-    flex: initial;
+  margin-bottom: 0;
+  display: flex;
+  flex: initial;
 }
 
-ion-icon{
-    margin-top: 10px;
-}
 
-.noDietObjective{
-    margin-left: 80px;
+
+.noDietObjective {
+  margin-left: 80px;
 }
 
 .deleteButton {
-  background-color: transparent; /* Color de fondo */
-  color: #ffa734; /* Color del texto */
-  border: none; /* Sin borde */
-  // border-radius: 50%; /* Forma circular */
-  width: 30px; /* Ancho del botón */
-  height: 30px; /* Altura del botón */
-  font-size: 16px; /* Tamaño de fuente */
-  cursor: pointer; /* Cursor de ratón */
-  outline: none; /* Sin contorno */
-  position: absolute; /* Posición absoluta */
-  top: 40px; /* Posicionamiento desde la parte superior */
-  right: 5px; /* Posicionamiento desde la derecha */
-  transition: background-color 0.3s; /* Transición suave */
-}
-
-.deleteButton:hover {
-  background-color: #d32f2f; /* Cambio de color al pasar el ratón */
+  background-color: transparent;
+  color: #ffa734;
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  top: 40px;
+  right: 5px;
+  transition: background-color 0.3s;
 }
