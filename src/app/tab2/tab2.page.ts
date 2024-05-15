@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { userDietData } from '../share/interfaces/userDietData';
 import { AlertController } from '@ionic/angular';
+import { UserInformation } from '../interfaces/interface';
 
 @Component({
   selector: 'app-tab2',
@@ -12,7 +13,7 @@ export class Tab2Page {
 
   constructor(private dataService: DataService, private alertController: AlertController) { }
 
-  userInfo!: userDietData;
+  userInfo!: UserInformation;
   showNoDataMessage: boolean = true
   target: any;
   groupedByMonth: any

@@ -48,9 +48,8 @@
       <ion-card-header>
         <div class="entryDate">
           <ion-card-title>{{item.dateAdded}}</ion-card-title>
-          <ion-icon *ngIf="userInfo.objective === 'deficit'" name="arrow-down-circle-outline"></ion-icon>
-          <ion-icon *ngIf="userInfo.objective === 'surplus'" name="arrow-up-circle-outline"></ion-icon>
-
+          <ion-icon *ngIf="item.objective === 'deficit'" name="arrow-down-circle-outline"></ion-icon>
+          <ion-icon *ngIf="item.objective === 'surplus'" name="arrow-down-circle-outline"></ion-icon>
         </div>
         <div *ngFor="let food of item.foods; let last=last">
           <div class="d-flex justify-content-between">

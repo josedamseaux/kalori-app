@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { DataService } from '../services/data.service';
 import { serverTimestamp } from 'firebase/firestore';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tab1',
@@ -24,9 +24,20 @@ export class Tab1Page implements OnInit {
   }
 
   groupedByMonth: any;
+  objective: string = ''
 
   ngOnInit() {
     this.getMeals()
+    this.getObjective()
+
+
+  }
+
+  getObjective(){
+    this.dataService.TMBSubject$.subscribe(data=>{
+        this.objective = data!.objective
+        console.log(data!.objective)
+    })
   }
 
   getMeals() {
@@ -47,53 +58,65 @@ export class Tab1Page implements OnInit {
       header: 'Add meal',
       buttons: [{
         text: 'Add another', handler: async (data) => {
+          console.log(data.meal)
           let meal = this.convertFirstLetterToCapital(data.meal);
           let kcal = parseInt(data.kcal);
           let object = {
             meal,
             kcal
           };
+
+          if (data.meal.length === 0) {
+            await this.errorEnteringMealName();
+            await alert.present();
+            return; // Detener la ejecución del resto del código si el valor de meal esta vacio
+          }
 
           if (isNaN(kcal) || data.kcal == '') {
             await this.errorEnteringKcal();
             await alert.present();
             return; // Detener la ejecución del resto del código si el valor de kcal no es un número
           }
-
           this.meal.foods.push(object);
           this.addMeal();
         },
       },
       {
         text: 'Done', handler: async (data) => {
-          console.log(data.kcal)
+          if (data.meal.length === 0) {
+            await this.errorEnteringMealName();
+            await alert.present();
+            return; // Detener la ejecución del resto del código si el valor de meal esta vacio
+          }
           if (isNaN(data.kcal) || data.kcal == '') {
             await this.errorEnteringKcal();
             await alert.present();
             return; // Detener la ejecución del resto del código si el valor de kcal no es un número
           } else {
 
-          let meal = this.convertFirstLetterToCapital(data.meal);
-          let kcal = parseInt(data.kcal);
-          let object = {
-            meal,
-            kcal
-          };
+            let meal = this.convertFirstLetterToCapital(data.meal);
+            let kcal = parseInt(data.kcal);
+            let object = {
+              meal,
+              kcal,
+            };
 
-          this.meal.foods.push(object);
-          let timeStamp = serverTimestamp();
-          let dateAdded = new Date(); // Obtiene la fecha actual
-          let dia = dateAdded.getDate();
-          let mes = dateAdded.getMonth() + 1;
-          let anio = dateAdded.getFullYear();
-          let date = `${dia < 10 ? '0' : ''}${dia}-${mes < 10 ? '0' : ''}${mes}-${anio}`;
-          Object.assign(this.meal, { dateAdded: date });
-          Object.assign(this.meal, { createdAt: timeStamp });
-          this.dataService.addMeal(this.meal);
-          this.meal.foods = [];
-          this.dataService.isNewDataPresent.next('newData');
-          this.getMeals();
-        }
+            this.meal.foods.push(object);
+            let timeStamp = serverTimestamp();
+            let dateAdded = new Date(); // Obtiene la fecha actual
+            let dia = dateAdded.getDate();
+            let mes = dateAdded.getMonth() + 1;
+            let anio = dateAdded.getFullYear();
+            let date = `${dia < 10 ? '0' : ''}${dia}-${mes < 10 ? '0' : ''}${mes}-${anio}`;
+            Object.assign(this.meal, { dateAdded: date });
+            Object.assign(this.meal, { createdAt: timeStamp });
+            Object.assign(this.meal, { objective: this.objective });
+
+            this.dataService.addMeal(this.meal);
+            this.meal.foods = [];
+            this.dataService.isNewDataPresent.next('newData');
+            this.getMeals();
+          }
         },
       }],
       inputs: [
@@ -111,6 +134,22 @@ export class Tab1Page implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async errorEnteringMealName() {
+    const alert2 = await this.alertController.create({
+      header: 'Please enter meal name',
+      buttons: [
+        {
+          text: 'Ok',
+          role: 'ok',
+          handler: () => {
+            this.addMeal();
+          },
+        }
+      ],
+    });
+    await alert2.present();
   }
 
   async errorEnteringKcal() {

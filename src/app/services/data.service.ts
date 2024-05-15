@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subject, from, map, shareReplay, switchMap
 import { AuthService } from './auth.service';
 import { CollectionReference, DocumentData, deleteDoc, documentId, getDocs, limit, orderBy } from 'firebase/firestore';
 import { isSameDay, parse, startOfDay } from 'date-fns';
+import { UserInformation } from '../interfaces/interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,14 @@ export class DataService {
   isNewDataPresent = new BehaviorSubject<any>(null);
   isNewDataPresent$ = this.isNewDataPresent.asObservable();
 
-  private subjectTMB = new BehaviorSubject<any>(null);
+  private subjectTMB = new BehaviorSubject<UserInformation | null>(null);
   TMBSubject$ = this.subjectTMB.asObservable();
 
   private subjectKcalSoFar = new BehaviorSubject<any>(null);
   subjectKcalSoFar$ = this.subjectKcalSoFar.asObservable()
+
+  private dataRefresh = new BehaviorSubject<any>(null);
+  dataRefresh$ = this.dataRefresh.asObservable()
 
   private uid!: string;
 
@@ -83,7 +87,6 @@ export class DataService {
 
         return collectionData(queryForMeals).pipe(
           map((resp: any[]) => {
-            console.log(resp)
 
             const groupedData: any = {};
             // Iterar sobre los objetos originales
@@ -145,7 +148,6 @@ export class DataService {
       querySnapshot.forEach(doc => {
         const docData = doc.data();
         if (docData['dateAdded'] === data.dateAdded) {
-          console.log(docData);
           docIdsToDelete.push(doc.id); // Almacenar el ID del documento a eliminar
         }
       });
@@ -154,6 +156,7 @@ export class DataService {
         const documentRef = doc(this.firestore, `${this.uid}/${docId}`);
         await deleteDoc(documentRef);
       });
+      this.subjectKcalSoFar.next(0)
       console.log("Documentos eliminados correctamente:", docIdsToDelete);
     } catch (error) {
       console.error(error);

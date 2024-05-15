@@ -45,17 +45,21 @@ export class KcalcounterComponent implements OnInit {
     let kcal = this.kcalVsTMB;
     let gradientTop = 'transparent'; // Color de fondo para la parte superior del degradado
     let gradientBottom = 'transparent'; // Color de fondo para la parte inferior del degradado
-
-    if (kcal >= -99 && kcal <= 100) {
-      color = '#ceffba'; // light-green: good -/+80
-    } else if (kcal >= -200 && kcal <= -100) {
+    if(this.kcalTotal === 0){
       color = '#ffd781'; // light-yellow: -/+100
-    } else if (kcal >= -299 && kcal <= -200) {
-      color = '#ffbb29'; // strong-yellow: -/+ 300
-    } else if (kcal <= -300) {
-      color = '#ff8000'; // strong-orange: -/+ 400
-      gradientTop = '#ffffff'; // Color blanco para la parte superior del degradado
-      gradientBottom = 'rgba(255, 255, 255, 0)'; // Color transparente para la parte inferior del degradado
+    } else {
+      if (kcal >= -99 && kcal <= 100) {
+        color = '#d3fbc3'; // light-green: good -/+80
+      } else if (kcal >= -200 && kcal <= -100) {
+        color = '#ffd781'; // light-yellow: -/+100
+      } else if (kcal >= -299 && kcal <= -200) {
+        color = '#ffbb29'; // strong-yellow: -/+ 300
+      } else if (kcal <= -300) {
+        color = '#ff8000'; // strong-orange: -/+ 400
+        gradientTop = '#ffffff'; // Color blanco para la parte superior del degradado
+        gradientBottom = 'rgba(255, 255, 255, 0)'; // Color transparente para la parte inferior del degradado
+      }
+
     }
 
     // Devolver un color de fondo con degradado desde la parte superior hasta la inferior
@@ -66,12 +70,11 @@ export class KcalcounterComponent implements OnInit {
 
   calculateKcalTotal() {
     this.kcalSoFarSubscription = this.dataService.subjectKcalSoFar$.subscribe(resp => {
+      console.log(resp)
+      if(resp===0) this.kcalTotal = 0
       if (resp) {
-        console.log(resp)
         this.kcalTotal = resp
         this.kcalVsTMB = this.kcalTarget - this.kcalTotal
-        console.log(this.kcalTarget)
-        console.log(this.kcalTotal)
 
         if (this.kcalVsTMB == 0) {
           this.messageForStatusOfTarget = `Perfectly balanced, as all things should be.`;
